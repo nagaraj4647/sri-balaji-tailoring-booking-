@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --bg-cream: #FAF7F2;
+  --color-maroon: #4A0E17;
+  --color-gold: #D4AF37;
+}
+
+body {
+  background-color: #FAF7F2;
+  color: #1A1A1A;
+  font-family: var(--font-inter);
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100vh;
+}
+
+/* Luxury Typography & Decorative Classes */
+.font-serif {
+  font-family: var(--font-cormorant);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #F3DB8B 0%, #D4AF37 50%, #A6823C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #F3DB8B 0%, #D4AF37 50%, #A6823C 100%);
+}
+
+.gold-border-glow {
+  border-color: #D4AF37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+}
+
+.maroon-gradient-bg {
+  background: linear-gradient(135deg, #4A0E17 0%, #27070C 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F4EFE6;
+}
+::-webkit-scrollbar-thumb {
+  background: #C5A059;
+  border-radius: 3px;
+}
+
+/* Mobile Touch Target Optimizations */
+button, input, select, textarea {
+  touch-action: manipulation;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.92; transform: scale(1.01); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2.5s infinite ease-in-out;
+}
