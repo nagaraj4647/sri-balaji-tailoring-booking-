@@ -95,51 +95,51 @@ export const StepCustomerForm: React.FC<StepCustomerFormProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       <div className="text-center sm:text-left">
         <span className="inline-block text-[11px] font-semibold tracking-widest text-gold-600 uppercase mb-1">
           Step 4 of 4
         </span>
-        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-maroon-950">
+        <h2 className="font-serif text-xl sm:text-3xl font-bold text-maroon-950">
           Customer Details & Summary
         </h2>
-        <p className="text-sm text-gray-600 mt-1">
+        <p className="text-xs sm:text-sm text-gray-600 mt-1">
           Enter your contact details to finalize your tailoring appointment.
         </p>
       </div>
 
       {/* Booking Summary Card */}
-      <div className="bg-white rounded-2xl border-2 border-gold-400/50 shadow-luxury overflow-hidden">
-        <div className="maroon-gradient-bg px-5 py-3 text-cream-50 flex items-center justify-between">
-          <span className="font-serif font-bold text-base tracking-wide flex items-center gap-2">
-            <Scissors className="w-4 h-4 text-gold-400 rotate-45" />
+      <div className="bg-white rounded-xl sm:rounded-2xl border-2 border-gold-400/50 shadow-luxury overflow-hidden w-full">
+        <div className="maroon-gradient-bg px-4 sm:px-5 py-2.5 sm:py-3 text-cream-50 flex items-center justify-between gap-2">
+          <span className="font-serif font-bold text-sm sm:text-base tracking-wide flex items-center gap-2 truncate">
+            <Scissors className="w-4 h-4 text-gold-400 rotate-45 shrink-0" />
             Appointment Summary
           </span>
-          <span className="text-[11px] bg-gold-500 text-maroon-950 font-bold px-2.5 py-0.5 rounded-full uppercase">
+          <span className="text-[10px] sm:text-[11px] bg-gold-500 text-maroon-950 font-bold px-2 sm:px-2.5 py-0.5 rounded-full uppercase shrink-0">
             No Payment Required
           </span>
         </div>
 
-        <div className="p-4 sm:p-5 space-y-3 bg-cream-50/40 text-sm">
-          <div className="flex items-center justify-between border-b border-cream-200 pb-2.5">
-            <span className="text-gray-600 font-medium">Service:</span>
-            <span className="font-bold text-maroon-950 font-serif text-base">{service}</span>
+        <div className="p-3.5 sm:p-5 space-y-2.5 sm:space-y-3 bg-cream-50/40 text-xs sm:text-sm">
+          <div className="flex items-center justify-between border-b border-cream-200 pb-2 gap-2">
+            <span className="text-gray-600 font-medium shrink-0">Service:</span>
+            <span className="font-bold text-maroon-950 font-serif text-sm sm:text-base truncate text-right">{service}</span>
           </div>
 
-          <div className="flex items-center justify-between border-b border-cream-200 pb-2.5">
-            <span className="text-gray-600 font-medium flex items-center gap-1.5">
-              <Calendar className="w-4 h-4 text-gold-600" />
+          <div className="flex items-center justify-between border-b border-cream-200 pb-2 gap-2">
+            <span className="text-gray-600 font-medium flex items-center gap-1.5 shrink-0">
+              <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold-600 shrink-0" />
               Date:
             </span>
-            <span className="font-bold text-maroon-900">{formatDatePretty(date)}</span>
+            <span className="font-bold text-maroon-900 truncate text-right">{formatDatePretty(date)}</span>
           </div>
 
-          <div className="flex items-center justify-between">
-            <span className="text-gray-600 font-medium flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-gold-600" />
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-gray-600 font-medium flex items-center gap-1.5 shrink-0">
+              <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold-600 shrink-0" />
               Time Slot:
             </span>
-            <span className="font-bold text-maroon-900 bg-gold-500/15 px-3 py-1 rounded-lg border border-gold-400/30">
+            <span className="font-bold text-maroon-900 bg-gold-500/15 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-lg border border-gold-400/30 shrink-0">
               {time}
             </span>
           </div>
@@ -148,7 +148,7 @@ export const StepCustomerForm: React.FC<StepCustomerFormProps> = ({
 
       {/* Error Alert */}
       {errorMsg && (
-        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-sm flex items-start gap-3">
+        <div className="p-3.5 sm:p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs sm:text-sm flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
           <div>
             <p className="font-semibold text-red-900">Booking Error</p>
@@ -174,7 +174,7 @@ export const StepCustomerForm: React.FC<StepCustomerFormProps> = ({
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
               placeholder="e.g. Anitha Sharma"
-              className="w-full pl-10 pr-4 py-3.5 bg-white rounded-xl border border-cream-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all"
+              className="w-full min-h-[48px] pl-10 pr-4 py-3 bg-white rounded-xl border border-cream-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 text-base sm:text-sm text-gray-900 placeholder-gray-400 outline-none transition-all"
             />
           </div>
         </div>
@@ -195,7 +195,7 @@ export const StepCustomerForm: React.FC<StepCustomerFormProps> = ({
               value={mobileNumber}
               onChange={(e) => setMobileNumber(e.target.value)}
               placeholder="10-digit mobile number"
-              className="w-full pl-10 pr-4 py-3.5 bg-white rounded-xl border border-cream-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all"
+              className="w-full min-h-[48px] pl-10 pr-4 py-3 bg-white rounded-xl border border-cream-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 text-base sm:text-sm text-gray-900 placeholder-gray-400 outline-none transition-all"
             />
           </div>
         </div>
@@ -206,7 +206,7 @@ export const StepCustomerForm: React.FC<StepCustomerFormProps> = ({
             WhatsApp Number <span className="text-red-500">*</span>
           </label>
           
-          <label className="flex items-center gap-2 text-xs text-gray-700 cursor-pointer select-none">
+          <label className="flex items-center gap-2 text-xs text-gray-700 cursor-pointer select-none py-1 min-h-[40px]">
             <input
               type="checkbox"
               checked={sameAsMobile}
@@ -228,7 +228,7 @@ export const StepCustomerForm: React.FC<StepCustomerFormProps> = ({
                 value={whatsappNumber}
                 onChange={(e) => setWhatsappNumber(e.target.value)}
                 placeholder="10-digit WhatsApp number"
-                className="w-full pl-10 pr-4 py-3.5 bg-white rounded-xl border border-cream-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all"
+                className="w-full min-h-[48px] pl-10 pr-4 py-3 bg-white rounded-xl border border-cream-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 text-base sm:text-sm text-gray-900 placeholder-gray-400 outline-none transition-all"
               />
             </div>
           )}
@@ -249,18 +249,18 @@ export const StepCustomerForm: React.FC<StepCustomerFormProps> = ({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. Bringing heavy silk saree fabric, need boat neck style..."
-              className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border border-cream-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all resize-none"
+              className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border border-cream-300 focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30 text-base sm:text-sm text-gray-900 placeholder-gray-400 outline-none transition-all resize-none min-h-[72px]"
             />
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3 pt-3">
+        <div className="flex items-center gap-2.5 sm:gap-3 pt-3">
           <button
             type="button"
             disabled={submitting}
             onClick={onBack}
-            className="w-1/3 py-4 px-4 rounded-xl font-semibold text-sm bg-white text-maroon-900 border border-cream-300 hover:bg-cream-100 transition-colors shadow-sm"
+            className="w-1/3 min-h-[48px] py-3.5 px-3 rounded-xl font-bold text-xs sm:text-sm bg-white text-maroon-900 border border-cream-300 hover:bg-cream-100 active:scale-[0.99] transition-colors shadow-sm flex items-center justify-center"
           >
             ← Back
           </button>
@@ -268,16 +268,16 @@ export const StepCustomerForm: React.FC<StepCustomerFormProps> = ({
           <button
             type="submit"
             disabled={submitting}
-            className="w-2/3 py-4 px-6 rounded-xl font-bold text-base tracking-wide maroon-gradient-bg text-cream-50 hover:brightness-110 active:scale-[0.99] border border-gold-500/40 shadow-luxury transition-all duration-200 flex items-center justify-center gap-2"
+            className="w-2/3 min-h-[48px] py-3.5 px-4 rounded-xl font-bold text-xs sm:text-base tracking-wide maroon-gradient-bg text-cream-50 hover:brightness-110 active:scale-[0.99] border border-gold-500/40 shadow-luxury transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2"
           >
             {submitting ? (
               <>
-                <Loader2 className="w-5 h-5 text-gold-400 animate-spin" />
+                <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-gold-400 animate-spin shrink-0" />
                 <span>Confirming...</span>
               </>
             ) : (
               <>
-                <CheckCircle className="w-5 h-5 text-gold-400" />
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-gold-400 shrink-0" />
                 <span>Confirm Appointment</span>
               </>
             )}

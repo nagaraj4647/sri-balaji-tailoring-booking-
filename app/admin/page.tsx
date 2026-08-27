@@ -9,7 +9,7 @@ import { StatsOverview } from '@/components/admin/StatsOverview';
 import { BookingTable } from '@/components/admin/BookingTable';
 import { SettingsForm } from '@/components/admin/SettingsForm';
 import { BUSINESS_NAME } from '@/lib/constants';
-import { Calendar, Settings, RefreshCw, ExternalLink, Loader2, LogOut, Lock } from 'lucide-react';
+import { Calendar, Settings, RefreshCw, ExternalLink, Loader2, LogOut, Lock, Menu, X, ShieldCheck } from 'lucide-react';
 
 export default function AdminDashboardPage() {
   const router = useRouter();
@@ -20,6 +20,7 @@ export default function AdminDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Check admin authentication session cookie
@@ -79,30 +80,44 @@ export default function AdminDashboardPage() {
     <div className="min-h-screen bg-cream-50 flex flex-col text-gray-900">
       
       {/* Admin Top Navigation Bar */}
-      <header className="maroon-gradient-bg text-cream-50 px-4 py-4 border-b-2 border-gold-400/40 shadow-luxury">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+      <header className="maroon-gradient-bg text-cream-50 px-3.5 sm:px-6 py-3 sm:py-4 border-b-2 border-gold-400/40 shadow-luxury sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-2.5">
           
-          <div className="flex items-center gap-3">
-            <div className="relative w-14 h-14 shrink-0">
-              <Image src="/logo.png" alt="Logo" width={56} height={56} className="w-full h-full object-contain drop-shadow-lg" priority />
+          {/* Logo & Compact Business Title */}
+          <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0 flex-1">
+            <div className="relative w-10 h-10 sm:w-14 sm:h-14 shrink-0">
+              <Image
+                src="/logo.png"
+                alt="Sri Balaji Tailoring Centre Logo"
+                width={56}
+                height={56}
+                className="w-full h-full object-contain drop-shadow-lg"
+                priority
+              />
             </div>
-            <div>
-              <h1 className="font-serif text-lg sm:text-xl font-bold tracking-wide text-cream-50 flex items-center gap-2">
-                <span>{BUSINESS_NAME}</span>
-                <span className="text-[10px] font-mono bg-gold-500 text-maroon-950 px-2 py-0.5 rounded font-bold uppercase">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2">
+                <h1 className="font-serif text-sm sm:text-xl font-bold tracking-wide text-cream-50 leading-tight truncate">
+                  {BUSINESS_NAME}
+                </h1>
+                {/* Desktop Admin Portal Badge */}
+                <span className="hidden sm:inline-flex text-[10px] font-mono bg-gold-500 text-maroon-950 px-2 py-0.5 rounded font-bold uppercase shrink-0">
                   Admin Portal
                 </span>
-              </h1>
-              <p className="text-[10px] text-gold-400">Manage Appointments & Daily Slot Capacity</p>
+              </div>
+              <p className="text-[10px] sm:text-xs text-gold-400 font-medium tracking-wide truncate mt-0.5">
+                Manage Appointments & Daily Slot Capacity
+              </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          {/* Desktop Right Navigation (Hidden on Mobile) */}
+          <div className="hidden sm:flex items-center gap-2 sm:gap-3 shrink-0">
             {/* View Customer Website Link */}
             <Link
               href="/"
               target="_blank"
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-cream-200 hover:text-gold-300 bg-maroon-900/60 hover:bg-maroon-900 border border-gold-500/20 flex items-center gap-1.5 transition-colors"
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-cream-200 hover:text-gold-300 bg-maroon-900/60 hover:bg-maroon-900 border border-gold-500/20 flex items-center gap-1.5 transition-colors shadow-sm"
             >
               <span>Customer View</span>
               <ExternalLink className="w-3 h-3 text-gold-400" />
@@ -112,14 +127,74 @@ export default function AdminDashboardPage() {
             <button
               type="button"
               onClick={handleLogout}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-red-200 hover:text-white bg-red-950/60 hover:bg-red-900 border border-red-500/30 flex items-center gap-1.5 transition-colors"
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-red-200 hover:text-white bg-red-950/60 hover:bg-red-900 border border-red-500/30 flex items-center gap-1.5 transition-colors shadow-sm"
               title="Lock Admin Dashboard"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Logout</span>
             </button>
           </div>
+
+          {/* Mobile Hamburger Toggle Button (Shown ONLY on Mobile) */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="sm:hidden p-2 rounded-xl text-cream-100 hover:text-gold-300 bg-maroon-900/80 hover:bg-maroon-900 border border-gold-500/30 focus:outline-none focus:ring-2 focus:ring-gold-400/40 transition-all shrink-0 min-h-[40px] min-w-[40px] flex items-center justify-center"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5 text-gold-400" />
+            ) : (
+              <Menu className="w-5 h-5 text-gold-400" />
+            )}
+          </button>
+
         </div>
+
+        {/* Mobile Dropdown Menu Drawer */}
+        {mobileMenuOpen && (
+          <div className="sm:hidden mt-3 pt-3 border-t border-gold-500/30 space-y-2.5 animate-in fade-in slide-in-from-top-1 duration-200">
+            {/* Admin Portal Status Indicator */}
+            <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-maroon-950/70 border border-gold-500/20 text-xs">
+              <span className="text-cream-200 font-medium flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-gold-400" />
+                <span>Dashboard Mode</span>
+              </span>
+              <span className="text-[10px] font-mono bg-gold-500 text-maroon-950 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                Admin Portal
+              </span>
+            </div>
+
+            {/* Customer View Link */}
+            <Link
+              href="/"
+              target="_blank"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-2.5 px-3.5 rounded-lg text-xs font-semibold text-cream-100 hover:text-gold-300 bg-maroon-900/80 hover:bg-maroon-900 border border-gold-500/30 flex items-center justify-between transition-colors"
+            >
+              <span className="flex items-center gap-2">
+                <ExternalLink className="w-4 h-4 text-gold-400" />
+                <span>Customer View Website</span>
+              </span>
+              <span className="text-[10px] text-gold-400/80 font-mono">↗</span>
+            </Link>
+
+            {/* Logout Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                handleLogout();
+              }}
+              className="w-full py-2.5 px-3.5 rounded-lg text-xs font-semibold text-red-200 hover:text-white bg-red-950/80 hover:bg-red-900 border border-red-500/40 flex items-center justify-between transition-colors"
+            >
+              <span className="flex items-center gap-2">
+                <LogOut className="w-4 h-4 text-red-400" />
+                <span>Logout Admin Session</span>
+              </span>
+            </button>
+          </div>
+        )}
       </header>
 
       {/* Main Admin Dashboard Body */}
@@ -134,8 +209,8 @@ export default function AdminDashboardPage() {
         ) : (
           <>
             {/* Realtime Stats Overview */}
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="font-serif text-xl font-bold text-maroon-950">
+            <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 mb-2">
+              <h2 className="font-serif text-lg sm:text-xl font-bold text-maroon-950">
                 Performance & Booking Stats
               </h2>
 
@@ -143,7 +218,7 @@ export default function AdminDashboardPage() {
                 type="button"
                 onClick={fetchData}
                 disabled={refreshing}
-                className="px-3 py-1.5 rounded-lg bg-white border border-cream-300 text-xs font-semibold text-maroon-900 hover:bg-cream-100 transition-colors flex items-center gap-1.5 shadow-sm"
+                className="px-3 py-1.5 rounded-lg bg-white border border-cream-300 text-xs font-semibold text-maroon-900 hover:bg-cream-100 transition-colors flex items-center gap-1.5 shadow-sm min-h-[36px]"
               >
                 <RefreshCw className={`w-3.5 h-3.5 text-gold-600 ${refreshing ? 'animate-spin' : ''}`} />
                 <span>Refresh</span>

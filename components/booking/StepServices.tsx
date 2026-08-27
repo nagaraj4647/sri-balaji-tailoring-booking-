@@ -32,20 +32,20 @@ export const StepServices: React.FC<StepServicesProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       <div className="text-center sm:text-left">
         <span className="inline-block text-[11px] font-semibold tracking-widest text-gold-600 uppercase mb-1">
           Step 1 of 4
         </span>
-        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-maroon-950">
+        <h2 className="font-serif text-xl sm:text-3xl font-bold text-maroon-950">
           Select Your Tailoring Service
         </h2>
-        <p className="text-sm text-gray-600 mt-1">
+        <p className="text-xs sm:text-sm text-gray-600 mt-1">
           Choose the service you wish to book an appointment for.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-3.5 sm:gap-4">
+      <div className="grid grid-cols-1 gap-3 sm:gap-4">
         {TAILORING_SERVICES.map((item) => {
           const isSelected = selectedService === item.name;
 
@@ -56,15 +56,15 @@ export const StepServices: React.FC<StepServicesProps> = ({
               onClick={() => {
                 onSelectService(item.name);
               }}
-              className={`relative w-full text-left p-4 sm:p-5 rounded-xl border transition-all duration-200 flex items-start justify-between gap-4 shadow-sm ${
+              className={`relative w-full text-left p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border transition-all duration-200 flex items-center justify-between gap-3 shadow-sm min-h-[56px] active:scale-[0.99] ${
                 isSelected
-                  ? 'bg-maroon-900 text-cream-50 border-gold-400 ring-2 ring-gold-400/40 shadow-luxury scale-[1.01]'
+                  ? 'bg-maroon-900 text-cream-50 border-gold-400 ring-2 ring-gold-400/40 shadow-luxury'
                   : 'bg-white text-gray-800 border-cream-300 hover:border-gold-500/60 hover:bg-cream-50/80'
               }`}
             >
-              <div className="flex items-start gap-3.5">
+              <div className="flex items-start gap-3 min-w-0 flex-1">
                 <div
-                  className={`p-2.5 rounded-lg flex items-center justify-center ${
+                  className={`p-2.5 rounded-xl flex items-center justify-center shrink-0 ${
                     isSelected
                       ? 'bg-gold-500 text-maroon-950'
                       : 'bg-cream-100 text-maroon-800'
@@ -73,10 +73,10 @@ export const StepServices: React.FC<StepServicesProps> = ({
                   {getIcon(item.iconName)}
                 </div>
 
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h3
-                      className={`font-serif text-lg font-bold ${
+                      className={`font-serif text-base sm:text-lg font-bold leading-tight ${
                         isSelected ? 'text-cream-50' : 'text-maroon-900'
                       }`}
                     >
@@ -84,7 +84,7 @@ export const StepServices: React.FC<StepServicesProps> = ({
                     </h3>
                     {item.badge && (
                       <span
-                        className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full ${
+                        className={`text-[9px] sm:text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full ${
                           isSelected
                             ? 'bg-gold-400 text-maroon-950'
                             : 'bg-maroon-100 text-maroon-800'
@@ -95,14 +95,14 @@ export const StepServices: React.FC<StepServicesProps> = ({
                     )}
                   </div>
                   <p
-                    className={`text-xs mt-1 leading-relaxed ${
+                    className={`text-xs mt-1 leading-relaxed break-words ${
                       isSelected ? 'text-cream-200' : 'text-gray-600'
                     }`}
                   >
                     {item.description}
                   </p>
                   <div
-                    className={`text-[11px] mt-2 font-medium ${
+                    className={`text-[11px] mt-1.5 font-medium ${
                       isSelected ? 'text-gold-300' : 'text-maroon-700'
                     }`}
                   >
@@ -112,7 +112,7 @@ export const StepServices: React.FC<StepServicesProps> = ({
               </div>
 
               {/* Selection Checkmark Indicator */}
-              <div className="mt-1">
+              <div className="shrink-0 self-center">
                 <div
                   className={`w-6 h-6 rounded-full border flex items-center justify-center transition-colors ${
                     isSelected
@@ -134,7 +134,7 @@ export const StepServices: React.FC<StepServicesProps> = ({
           type="button"
           disabled={!selectedService}
           onClick={onNext}
-          className={`w-full py-4 px-6 rounded-xl font-semibold text-base tracking-wide flex items-center justify-center gap-2 shadow-luxury transition-all duration-200 ${
+          className={`w-full min-h-[48px] py-3.5 px-6 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 shadow-luxury transition-all duration-200 ${
             selectedService
               ? 'maroon-gradient-bg text-cream-50 hover:brightness-110 active:scale-[0.99] border border-gold-500/30'
               : 'bg-gray-200 text-gray-400 cursor-not-allowed border border-gray-300'

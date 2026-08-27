@@ -57,9 +57,26 @@ body {
   border-radius: 3px;
 }
 
-/* Mobile Touch Target Optimizations */
+/* Mobile Touch Target & Layout Optimizations */
 button, input, select, textarea {
   touch-action: manipulation;
+}
+
+/* Prevent auto-zoom on focus on iOS Safari for form fields */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 @keyframes pulse-subtle {
@@ -70,3 +87,4 @@ button, input, select, textarea {
 .animate-pulse-subtle {
   animation: pulse-subtle 2.5s infinite ease-in-out;
 }
+

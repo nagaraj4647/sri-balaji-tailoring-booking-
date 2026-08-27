@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "375px",
+      },
       colors: {
         maroon: {
           950: "#27070C",
@@ -42,7 +45,7 @@ const config: Config = {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "gold-gradient": "linear-[#D4AF37], linear-gradient(135deg, #F3DB8B 0%, #D4AF37 50%, #A6823C 100%)",
+        "gold-gradient": "linear-gradient(135deg, #F3DB8B 0%, #D4AF37 50%, #A6823C 100%)",
         "maroon-gradient": "linear-gradient(135deg, #4A0E17 0%, #27070C 100%)",
         "cream-gradient": "linear-gradient(180deg, #FAF7F2 0%, #F4EFE6 100%)",
       },
