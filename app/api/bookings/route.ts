@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createBookingTransaction, getAllBookings, getBookingById } from '@/lib/db';
+import { sendBookingNotificationSMS } from '@/lib/sms';
 
 export async function GET(req: NextRequest) {
   try {
@@ -77,6 +78,10 @@ export async function POST(req: NextRequest) {
       time,
       notes: notes || '',
     });
+
+    // Notify the owner by SMS. The helper never throws; SMS failure does not
+    // affect the confirmed booking.
+    await sendBookingNotificationSMS(booking);
 
     return NextResponse.json({ success: true, booking }, { status: 201 });
   } catch (error: any) {
